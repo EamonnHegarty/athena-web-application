@@ -1,0 +1,76 @@
+<% layout("layouts/boilerplate") %>
+<div class="row">
+    <h1 class="text-center">New Expense</h1>
+    <div class="col-md-6 offset-md-3">
+        <form action="/expenses" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label" for="totalCost">Total Cost</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="totalCost">£</span>
+                    <input type="text" class="form-control" id="totalCost" placeholder="0.00" aria-label="totalCost" aria-describedby="totalCost" name="expenses[totalCost]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="location">Location</label>
+                <input class="form-control" type="text" id="city" name="expenses[location]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <p>Expense Type:</p>
+            <div class="mb-3">
+                <select class="form-select form-select-md mb-3" name="expenses[expenseType]" required>
+                    <option value="travel">Travel</option>
+                    <option value="accommodation">Accommodation</option>
+                    <option value="dining">Dining</option>
+                    <option value="client">Client</option>
+                    <option value="phone">Phone</option>
+                  </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="expenseDate">Expense Date</label>
+                <input class="form-control" type="date" id="expenseDate" name="expenses[expenseDate]" required >
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="currentDate">Current Date</label>
+                <input class="form-control" type="date" id="currentDate" name="expenses[currentDate]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="expenseDescription">Expense Description</label>
+                <textarea class="form-control" type="text" id="expenseDescription" name="expenses[expenseDescription]" required></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="receipt" class="form-label">Upload Receipts</label>
+                <input class="form-control" type="file" id="receipt" name="receipt" multiple required>
+            </div>
+            <div class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                    <label class="form-check-label" for="invalidCheck">
+                        Agree to terms and conditions
+                    </label>
+                    <div class="invalid-feedback">
+                        You must agree before submitting.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-success">Add Expense</button>
+            </div>
+        </form>
+        <a href="/expenses">Back To All Expenses</a>
+    </div>
+</div>
+

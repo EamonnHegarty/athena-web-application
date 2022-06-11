@@ -1,0 +1,52 @@
+<% layout("layouts/boilerplate") %>
+<div class="row">
+    <div class="col-8 offset-2 mb-3">
+        <div id="expensesCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <% expenses.receipt.forEach((receipt, i) => { %>
+                <div class="carousel-item <%= i === 0 ? "active" : "" %>">
+                    <img class="d-block w-100" src="<%= receipt.url %>" alt="">
+                </div>
+                <% }) %>   
+            </div>
+            <a class="carousel-control-prev" href="#expensesCarousel" role="button" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only"></span>
+            </a>
+            <a class="carousel-control-next" href="#expensesCarousel" role="button" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only"></span>
+            </a>
+          </div>
+        <div class="card"> 
+            <div class="card-body">
+                <h5 class="card-title"><%= expenses.expenseType %></h5>
+                <p class="card-text"><%= expenses.expenseDescription %></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Total Cost: $<%= expenses.totalCost %></li>
+                <li class="list-group-item"><%= expenses.location %></li>
+                <li class="list-group-item">Expense Date: <%= expenses.expenseDate %></li>
+            </ul>
+            <div class="card-body d-none d-md-block" id='map' style='width: auto; height: 300px;'></div>
+            <div class="card-body">
+                <% if( currentUser && expenses.employeeId.equals(currentUser._id))   { %>
+                    <a class="card-link btn btn-success "href="/expenses/<%= expenses._id %>/edit">Edit</a>
+                    <form class="d-inline" action="/expenses/<%= expenses._id %>?_method=DELETE " method="POST">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                <% } %>
+                <%if(currentUser.role === "manager") { %>
+                    <button type="button" class="btn btn-success">Approve</button>
+                    <button type="button" class="btn btn-danger">Decline</button>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const mapBoxToken = "<%-process.env.MAPBOX_TOKEN%>";
+    //not an error
+    const expenses = <%- JSON.stringify(expenses) %>;
+</script>
+<script src="/javascripts/showPageMap.js"></script>
