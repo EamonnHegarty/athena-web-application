@@ -1,5 +1,5 @@
 # Athena Web Application
-- Project completed during Highier Diploma in Software Development and Design
+- Project completed during Higher Diploma in Software Development and Design
 - Utilizes the MEAN stack replacing REACT with EJS
 
 
